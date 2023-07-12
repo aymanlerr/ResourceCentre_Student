@@ -134,36 +134,40 @@ public class ResourceCentreTest {
 	@Test
 	public void testRetrieveAllChromebook() {
 		//Test Case 1
-		// Test if chromebook list is not null and empty
+		// Test if Chromebook list is not null and empty
 		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
 		assertEquals("Test that the Chromebook arraylist is empty.", 0, chromebookList.size());
-		// Attempt to retrieve the Camcoders 
-		String allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
+		// Attempt to retrieve the Chromebook 
+		String allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList).toString();
 		String testOutput = "";
 		// Test if the output is empty
 		assertEquals("Test that nothing is displayed", testOutput, allChromebook);
 
+		
+		
 		//Test Case 2
 		ResourceCentre.addChromebook(chromebookList, cb1);
 		ResourceCentre.addChromebook(chromebookList, cb2);
 		// Test that the list is not empty
-		assertEquals("Test that Chromebook arraylist size is 2.", 2, camcorderList.size());
+		assertEquals("Test that Camcorder arraylist size is 2.", 2, chromebookList.size());
 		// Attempt to retrieve the Chromebooks 
-		allChromebook = ResourceCentre.retrieveAllChromebook(chromebookList);
-		testOutput = String.format("%-10s %-30s %-10s","CB0011", "My Google Chromebook 1st", "Mac OS");
-		testOutput += String.format("\n%-10s %-30s %-10s","CB0012", "SAMSUNG Chromebook 4+", "Win 10");
+		allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
+		testOutput = String.format("%-10s %-30s %-10s %-10s\n","CB0011", "My Google Chromebook 1st", "Yes", "", "Mac OS");
+		testOutput += String.format("%-10s %-30s %-10s %-10s\n","CB0012", "SAMSUNG Chromebook 4+", "Yes", "", "Win 10");
 		// Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.", testOutput, allChromebook);
 
+		
+		
 		//Test Case 3
 		cb3.setIsAvailable(false);
 		ResourceCentre.addChromebook(chromebookList, cb3);
 		assertEquals("Test that Chromebook arraylist size is 2.", 3, chromebookList.size());
 		assertFalse("Test that the last item in the arraylist is not available", chromebookList.get(2).getIsAvailable());
-		// Attempt to retrieve the Camcoders 
+		// Attempt to retrieve the Chromebook 
 		allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
-		testOutput = String.format("%-10s %-30s %-10s","CB0011", "My Google Chromebook 1st", "Mac OS");
-		testOutput += String.format("\n%-10s %-30s %-10s","CB0012", "SAMSUNG Chromebook 4+", "Win 10");
+		testOutput = String.format("%-10s %-30s %-10s %-10s\n","CB0011", "My Google Chromebook 1st", "Yes", "", "Mac OS");
+		testOutput += String.format("%-10s %-30s %-10s %-10s\n","CB0012", "SAMSUNG Chromebook 4+", "Yes", "", "Win 10");
 		// Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.", testOutput, allChromebook);
 	}
