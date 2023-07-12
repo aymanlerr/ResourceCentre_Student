@@ -149,7 +149,15 @@ public class ResourceCentre {
 
 	public static String retrieveAllChromebook(ArrayList<Chromebook> chromebookList) {
 		String output = "";
-		// write your code here
+
+		for (int i = 0; i < chromebookList.size(); i++) {
+			if (chromebookList.get(i).getIsAvailable()) {
+				output += String.format("%-10s %-30s %-10s %-10s\n", chromebookList.get(i).getAssetTag(),
+						chromebookList.get(i).getDescription(), 
+					ResourceCentre.showAvailability(chromebookList.get(i).getIsAvailable()),
+					chromebookList.get(i).getDueDate(),chromebookList.get(i).getOs());
+			}
+		}
 		return output;
 	}
 	public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
@@ -172,8 +180,9 @@ public class ResourceCentre {
 		Camcorder item;
 		for(int i = 0; i < camcorderList.size(); i++) {
 			item = camcorderList.get(i);
-			if (item.getAssetTag().equalsIgnoreCase(cc.getAssetTag()) )
+			if (item.getAssetTag().equalsIgnoreCase(cc.getAssetTag()) ) {
 				return;
+			}
 		}
 		if ((cc.getAssetTag().isEmpty()) || (cc.getDescription().isEmpty()) ) {
 			return;
@@ -185,6 +194,11 @@ public class ResourceCentre {
 	public static Chromebook inputChromebook() {	
 		Chromebook cb =null;
 		// write your code here
+		String tag = Helper.readString("Enter asset tag > ");
+		String description = Helper.readString("Enter description > ");
+		String os = Helper.readString("Enter os > ");
+
+		cb= new Chromebook(tag, description, os);
 
 		return cb;
 		
@@ -194,8 +208,9 @@ public class ResourceCentre {
 		Chromebook item;
 		for(int i = 0; i < chromebookList.size(); i++) {
 			item = chromebookList.get(i);
-			if (item.getAssetTag().equalsIgnoreCase(cb.getAssetTag()) )
+			if (item.getAssetTag().equalsIgnoreCase(cb.getAssetTag()) ) {
 				return;
+			}	
 		}
 		if ((cb.getAssetTag().isEmpty()) || (cb.getDescription().isEmpty()) ) {
 			return;
