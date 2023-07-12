@@ -118,7 +118,7 @@ public class ResourceCentreTest {
 		// Test that the details are displayed correctly
 		assertEquals("Test that the display is correct.", testOutput, allCamcorder);
 
-		//Test Case 3
+		//Test Case 
 		cc3.setIsAvailable(false);
 		ResourceCentre.addCamcorder(camcorderList, cc3);
 		assertEquals("Test that Camcorder arraylist size is 2.", 3, camcorderList.size());
